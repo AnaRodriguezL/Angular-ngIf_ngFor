@@ -1,0 +1,93 @@
+<div class="mainContainer">
+    <!-- ANIMATION -->
+    <div>
+        <div class="starsec"></div>
+        <div class="starthird"></div>
+        <div class="starfourth"></div>
+        <div class="starfifth"></div>
+    </div>
+
+    <!-- TITLE -->
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <div class="wpb_text_column wpb_content_element ">
+                <div class="wpb_wrapper">
+                    <div class="pricing_row_title text-center mt-5"><span class="light">FACTURAS</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- REGISTRAR ARTICULOS -->
+    <div class="row container-form" *ngIf="!articulos">
+        <div class="col-form">
+            <div class="group">
+                <input [(ngModel)]="nombre" type="text" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label id="nombre">Nombre</label>
+            </div>
+        </div>
+        <div class="col">
+            <div class="group">
+                <input [(ngModel)]="precio" type="number" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label id="precio">Precio</label>
+            </div>
+        </div>
+        <div class="col">
+            <button class="btn btn-lg" (click)="registrarArticulo(facturaId)">
+                <span>Agregar Articulo</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- LISTA DE ARTICULOS -->
+    <div class="row">
+        <div class="col-sm-3 col-md-3 pricing-column-wrapper pt-5" *ngFor="let factura of facturas let i = index">
+            <div class=" pricing-price-wrapper">
+                <div class="pricing-price">
+                    <div class="pricing-cost">
+                        {{total | currency}}
+                    </div><br>
+                    <div class="time">
+                        Serial: {{factura.serial}}
+                    </div>
+                </div>
+            </div>
+            <div class="pricing-row-title">
+                <div class="pricing_row_title">
+                    {{factura.fecha | date:"short"}}<br>
+                    <h5>Fecha</h5>
+                </div>
+                <div *ngFor="let item of factura.items">
+                    <figure class="pricing-row">
+                        <mat-icon>check</mat-icon>
+                        {{item.nombre}} - {{item.precio | currency}}
+                    </figure>
+                </div>
+                <div class="pricing-footer">
+                    <div class="gem-button-container gem-button-position-center">
+                        <a class="gem-button" (click)="agregarArticulo(i)">
+                            Agregar Artículo
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3 col-md-3 pricing-column-wrapper pt-5">
+            <div class="pricing-price-wrapper">
+                <div class="pricing-price" (click)="agregarFactura()">
+                    <div class="pricing-cost">
+                        <mat-icon>add_shopping_cart</mat-icon>
+                    </div>
+                    <div class="time">
+                        Agregar Factura
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

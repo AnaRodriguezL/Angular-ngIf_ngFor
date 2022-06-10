@@ -1,0 +1,118 @@
+<div class="mainContainer">
+    <!-- ANIMATION -->
+    <div>
+        <div class="starsec"></div>
+        <div class="starthird"></div>
+        <div class="starfourth"></div>
+        <div class="starfifth"></div>
+    </div>
+
+    <!-- TITLE -->
+    <div class="row">
+        <div class="col-sm-12 col-md-12">
+            <div class="wpb_text_column wpb_content_element ">
+                <div class="wpb_wrapper">
+                    <div class="pricing_row_title text-center mt-5"><span class="light">COMPETENCIAS</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- REGISTRAR COMPORTAMIENTO -->
+    <div class="row container-form" *ngIf="!comportamientoPanel">
+        <div class="col-form">
+            <div class="group">
+                <input [(ngModel)]="descripcionC" type="text" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label id="descripcionC">Descripción</label>
+            </div>
+        </div>
+        <div class="col">
+            <div class="group">
+                <input [(ngModel)]="porcentaje" type="number" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label id="porcentaje">Porcentjae</label>
+            </div>
+        </div>
+        <div class="col">
+            <button class="btn btn-lg" (click)="registrarComportamiento(id)">
+                <span>Registrar</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- REGISTRAR COMPETENCIAS -->
+    <div class="row container-form" *ngIf="!competenciaPanel">
+        <div class="col-form">
+            <div class="group">
+                <input [(ngModel)]="nombre" type="text" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label id="nombre">Nombre</label>
+            </div>
+        </div>
+        <div class="col">
+            <div class="group">
+                <input [(ngModel)]="descripcion" type="text" required>
+                <span class="highlight"></span>
+                <span class="bar"></span>
+                <label id="descripcion">Descripción</label>
+            </div>
+        </div>
+        <div class="col">
+            <button class="btn btn-lg" (click)="registrarCompetencia()">
+                <span>Registrar</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- LISTA DE COMPETENCIAS -->
+    <div class="row">
+        <div class="col-sm-3 col-md-3 pricing-column-wrapper pt-5"
+            *ngFor="let competencia of competencia let i = index">
+            <div class=" pricing-price-wrapper">
+                <div class="pricing-price">
+                    <div class="pricing-cost">
+                        {{competencia.nombre}}
+                    </div>
+                    <div class="time pt-2">
+                        Serial: {{competencia.id}}
+                    </div>
+                </div>
+            </div>
+            <div class="pricing-row-title">
+                <div class="pricing_row_title">
+                    {{competencia.descripcion}}
+                </div>
+                <div *ngFor="let comportamiento of competencia.comportamientos">
+                    <figure class="pricing-row">
+                        <mat-icon (click)="eliminarComportamiento(id)">cancel</mat-icon>
+                        {{comportamiento.descripcion}} - {{comportamiento.porcentaje}}%
+                    </figure>
+                </div>
+                <div class="pricing-footer">
+                    <div class="gem-button-container gem-button-position-center">
+                        <a class="gem-button" (click)="agregarComportamientos(i)">
+                            Agregar Comportamiento
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-sm-3 col-md-3 pricing-column-wrapper pt-5">
+            <div class="pricing-price-wrapper">
+                <div class="pricing-price" (click)="agregarCompetencias()">
+                    <div class="pricing-cost">
+                        <mat-icon>library_add</mat-icon>
+                    </div>
+                    <div class="time">
+                        Agregar Competencia
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

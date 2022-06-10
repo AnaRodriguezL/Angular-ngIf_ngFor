@@ -1,0 +1,97 @@
+.menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  background: rgba(28, 31, 47, 0.16);
+  visibility: visible !important;
+}
+
+.menu {
+  padding-top: 16px;
+}
+
+.menu li mat-icon {
+  display: block;
+  font-size: 2em;
+  height: 2em;
+  width: 2em;
+  line-height: 2em;
+  text-align: center;
+  color: #fff;
+  background: #181828;
+  position: relative;
+  border-bottom: 1px solid #fff;
+  transition: background 0.3s ease-in-out;
+}
+
+.menu li mat-icon:hover {
+  background: #00bcd4;
+  color: #fff;
+}
+
+.menu li.current mat-icon {
+  background: #00bcd4;
+  color: #fff;
+}
+
+.menu li mat-icon.active {
+  background: #00bcd4;
+  color: #fff;
+}
+
+.menu li mat-icon.active::after {
+  position: absolute;
+  left: 2em;
+  top: 0;
+  content: "";
+  border: 2.5em solid transparent;
+  border-left-color: #00bcd4;
+  border-width: 1em 1em;
+  color: #fff;
+}
+
+.menu li {
+  position: relative;
+}
+
+.menu li::after {
+  content: attr(title);
+  position: absolute;
+  left: 4em;
+  top: 0;
+  height: 3em;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  text-transform: uppercase;
+  background: #00bcd4;
+  padding: 2em;
+  transition: all 0.3s ease-in-out;
+  visibility: hidden;
+  opacity: 0;
+  color: #fff;
+}
+
+.menu li:hover::after {
+  visibility: visible;
+  opacity: 1;
+  width: 150px;
+}
+
+@media screen and (max-height: 34em) {
+  .menu li {
+    font-size: 70%;
+  }
+}
+
+.mat-drawer {
+  transform: none !important;
+}
+
+.content {
+  display: block;
+}

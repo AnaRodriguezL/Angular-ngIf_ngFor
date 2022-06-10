@@ -1,0 +1,13 @@
+<mat-sidenav-container>mat-sidenav-container>
+    <mat-sidenav class="mat-elevation-z8">
+        <ul class="menu">
+            <li title={{nav.name}} [routerLink]="nav.route" *ngFor="let nav of fillerNav">
+                <mat-icon routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">{{nav.icon}}</mat-icon>
+            </li>
+        </ul>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="content">
+        <router-outlet></router-outlet>
+    </mat-sidenav-content>
+</mat-sidenav-container>
